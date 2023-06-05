@@ -1,6 +1,6 @@
 package com.mbialowas.bookfinder
 
-data class BookModel(
+data class Character(
     val name:String,
     val species: String,
     val gender: String,
