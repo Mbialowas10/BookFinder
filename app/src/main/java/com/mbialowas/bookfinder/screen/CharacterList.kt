@@ -1,6 +1,8 @@
 package com.mbialowas.bookfinder.screen
 
 import android.util.Log
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -51,6 +54,7 @@ fun CharacterList(){
 
 @Composable
 fun Character(character: Character){
+    val context = LocalContext.current
     Box(modifier = Modifier
         .height(100.dp)
         .padding(5.dp)
@@ -65,7 +69,9 @@ fun Character(character: Character){
         ) {
 
             Row(modifier = Modifier
-                .fillMaxWidth().fillMaxHeight()) {
+                .fillMaxWidth().fillMaxHeight().clickable{
+                    Toast.makeText(context, "You clicked ${character.actor}. ",Toast.LENGTH_SHORT).show()
+                }) {
                 AsyncImage(modifier = Modifier
                     .clip(CircleShape),
                     model = character.image  , contentDescription = character.actor)
